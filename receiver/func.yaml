@@ -1,0 +1,11 @@
+name: receiver
+namespace: ""
+runtime: go
+image: quay.io/ilawson/receiver:latest
+imageDigest: ""
+trigger: events
+builder: default
+builderMap:
+  default: quay.io/boson/faas-go-builder
+envVars:
+  TELEGRAM_API_KEY: <TELEGRAM API KEY>
