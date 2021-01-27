@@ -72,7 +72,7 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 	}
 
 	// Message Date
-	var msgDate int8
+	var msgDate int64
 
 	msgDate = msg.Date
 
