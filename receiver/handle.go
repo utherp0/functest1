@@ -2,13 +2,9 @@ package function
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"fmt"
-	"io/ioutil"
-	"net/http"
 	"os"
-	"strings"
 
 	cloudevents "github.com/cloudevents/sdk-go/v2"
 )
