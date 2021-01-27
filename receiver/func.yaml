@@ -1,7 +1,7 @@
 name: receiver
 namespace: ""
 runtime: go
-image: quay.io/ilawson/functest/receiver:latest
+image: quay.io/ilawson/func1receiver:latest
 imageDigest: ""
 trigger: events
 builder: default
