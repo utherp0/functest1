@@ -36,6 +36,9 @@ type GetUrlResult struct {
 
 // Handle a CloudEvent.
 func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Event, err error) {
+
+  fmt.Println("In handle method")
+
 	if token == "" {
 		// With no API token we can't do anything
 		return nil, errors.New("TELEGRAM_API_KEY environment variable not set")
