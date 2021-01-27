@@ -88,11 +88,10 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 	//msgDate = msg.Date
 
 	fmt.Println("At 5")
-	fmt.Printf( "Username: %s\n", msg)
 
 	// Username
 	var msgUsername string
-	if inputUsername, found := msg.From["username"]; found {
+	if inputUsername, found := msg.From["last_name"]; found {
 		msgUsername = inputUsername.(string)
 	} else {
 		fmt.Fprintf(os.Stderr, "No username in from component of received message.\n")
