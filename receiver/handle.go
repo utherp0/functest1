@@ -69,18 +69,18 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 
 	// Message Text
 	var msgText string
-	if inputText, found := msg.Text; found {
-		msgText = inputText
-	} else {
+
+	msgText = msg.Text
+	if msgText == "" {
 		fmt.Fprintf(os.Stderr, "No message text in recieved message.\n")
 		return
 	}
 
 	// Message Date
 	var msgDate string
-	if inputDate, found := msg.Date; found {
-		msgDate = inputDate
-	} else {
+
+	msgDate = msg.Date
+	if msgDate == "" {
 		fmt.Fprintf(os.Stderr, "No date in received message.\n")
 		return
 	}
