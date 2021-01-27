@@ -18,14 +18,14 @@ var (
 type Message struct {
 	Chat   map[string]interface{}   `json:"chat"`
 	Text   string                   `json:"text"`
-	Date   string                   `json:"date"`
+	Date   int8                     `json:"date"`
   From   map[string]interface{}   `json:"from"`
 }
 
 type Response struct {
 	Chat string `json:"chat"`
 	Text string `json:"text"`
-	Date string `json:"text"`
+	Date int8 `json:"date"`
 	Username string `json:"username"`
 	IsBot bool `json:"isbot"`
 }
@@ -73,7 +73,7 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 	}
 
 	// Message Date
-	var msgDate string
+	var msgDate int8
 
 	msgDate = msg.Date
 	if msgDate == "" {
