@@ -101,7 +101,7 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 	fmt.Printf( "  ChatID: %s\n",chatID)
 	fmt.Printf( "  Text: %s\n", msgText)
 	fmt.Printf( "  User: %s\n", msgUsername)
-  fmt.Printf( "  IsBot: %t\n". msgIsbot )
+  fmt.Printf( "  IsBot: %t\n", msgIsbot )
 
 	response := cloudevents.NewEvent()
 	response.SetID(event.ID())
