@@ -17,14 +17,14 @@ var (
 type Message struct {
 	Chat   map[string]interface{}   `json:"chat"`
 	Text   string                   `json:"text"`
-	Date   int64                     `json:"date"`
+	//Date   int64                     `json:"date"`
   From   map[string]interface{}   `json:"from"`
 }
 
 type Response struct {
 	Chat string `json:"chat"`
 	Text string `json:"text"`
-	Date int64 `json:"date"`
+	//Date int64 `json:"date"`
 	Username string `json:"username"`
 	IsBot bool `json:"isbot"`
 }
@@ -72,9 +72,9 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 	}
 
 	// Message Date
-	var msgDate int64
+	//var msgDate int64
 
-	msgDate = msg.Date
+	//msgDate = msg.Date
 
 	// Username
 	var msgUsername string
