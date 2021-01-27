@@ -21,14 +21,17 @@ var (
 
 type Message struct {
 	Chat   map[string]interface{}   `json:"chat"`
-	Photos []map[string]interface{} `json:"photo"`
 	Text   string                   `json:"text"`
+	Date   string                   `json:"date"`
+  From   map[string]interface{}   `json:"from"`
 }
 
 type Response struct {
 	Chat string `json:"chat"`
-	URL  string `json:"url"`
 	Text string `json:"text"`
+	Date string `json:"text"`
+	Username string `json:"username"`
+	IsBot bool `json:"isbot"`
 }
 
 type GetUrlResult struct {
@@ -55,97 +58,68 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 		return
 	}
 
-	// Get chat ID from Telegram message
+	// Extract the data from the Telegram message response
 	var chatID string
 	if id, found := msg.Chat["id"]; found {
 		chatID = id.(string)
 	} else {
-		fmt.Fprintf(os.Stderr, "failed to get chat_id from Telegram message\n")
+		fmt.Fprintf(os.Stderr, "No Chat ID in received message.\n")
 		return
 	}
 
-	if len(msg.Photos) == 0 {
-		//doesn't contain a photo -> emit telegram.text event
-		fmt.Println("received Telegram message without a photo.")
-		// send a CloudEvent with photos
-		response := cloudevents.NewEvent()
-		response.SetID(event.ID())
-		response.SetSource("function:receiver")
-		response.SetType("telegram.text")
-		response.SetData(cloudevents.ApplicationJSON, Response{
-			Chat: chatID,
-			Text: msg.Text,
-		})
-
-		resp = &response
-
-		if err = resp.Validate(); err != nil {
-			fmt.Printf("invalid event created. %v", err)
-		}
-
-		return
-	}
-
-	fmt.Println("received Telegram message with a photo.")
-
-	// Get ID of the last photo from Telegram message
-	var fileID string
-	if id, found := msg.Photos[len(msg.Photos)-1]["file_id"]; found {
-		fileID = id.(string)
+	// Message Text
+	var msgText string
+	if inputText, found := msg.Text; found {
+		msgText = inputText
 	} else {
-		fmt.Fprintf(os.Stderr, "failed to get file_id from the last photo from Telegram message\n")
+		fmt.Fprintf(os.Stderr, "No message text in recieved message.\n")
 		return
 	}
 
-	var photoPath string
-	photoPath, err = getPhotoURL(fileID)
+	// Message Date
+	var msgDate string
+	if inputDate, found := msg.Date; found {
+		msgDate = inputDate
+	} else {
+		fmt.Fprintf(os.Stderr, "No date in received message.\n")
+		return
+	}
 
-	// send a CloudEvent with photos
+	// Username
+	var msgUsername string
+	if inputUsername, found := msg.From["username"]; found {
+		msgUsername = inputUsername.(string)
+	} else {
+		fmt.Fprintf(os.Stderr, "No username in from component of received message.\n")
+		return
+	}
+
+	// IsBot
+	var msgIsbot bool
+	if inputIsbot, found := msg.From["is_bot"]; found {
+		msgIsbot = inputIsbot.(bool)
+	} else {
+		fmt.Fprintf(os.Stderr, "No is_bot label in received message.\n")
+		return
+	}
+
 	response := cloudevents.NewEvent()
 	response.SetID(event.ID())
 	response.SetSource("function:receiver")
-	response.SetType("telegram.image")
+	response.SetType("telegram.message.processed")
 	response.SetData(cloudevents.ApplicationJSON, Response{
 		Chat: chatID,
-		URL:  donwloadPhotoBaseUrl + photoPath,
+		Text: msgText,
+		Date: msgDate,
+		Username: msgUsername,
+		IsBot: msgIsbot
 	})
-
-	resp = &response
+	
+  resp = &response
 
 	if err = resp.Validate(); err != nil {
 		fmt.Printf("invalid event created. %v", err)
 	}
 
 	return
-}
-
-func getPhotoURL(fileID string) (string, error) {
-
-	res, err := http.Post(
-		getFileInfoUrl,
-		"application/json; charset=UTF-8",
-		strings.NewReader(fmt.Sprintf("{\"file_id\":\"%s\"}", fileID)),
-	)
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "unable to get a photo URL. %v", err)
-		return "", err
-	}
-	if res.Body != nil {
-		defer res.Body.Close()
-	}
-
-	data, _ := ioutil.ReadAll(res.Body)
-	result := GetUrlResult{}
-	json.Unmarshal(data, &result)
-
-	var filepath string
-	if path, found := result.Result["file_path"]; found {
-		filepath = path.(string)
-	} else {
-		err := fmt.Errorf("failed to get file_path from Telegram message, data: %v", result)
-		fmt.Fprintf(os.Stderr, err.Error())
-		return "", err
-	}
-
-	return filepath, nil
 }
