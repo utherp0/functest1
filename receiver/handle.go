@@ -18,14 +18,14 @@ var (
 type Message struct {
 	Chat   map[string]interface{}   `json:"chat"`
 	Text   string                   `json:"text"`
-	Date   int8                     `json:"date"`
+	Date   int64                     `json:"date"`
   From   map[string]interface{}   `json:"from"`
 }
 
 type Response struct {
 	Chat string `json:"chat"`
 	Text string `json:"text"`
-	Date int8 `json:"date"`
+	Date int64 `json:"date"`
 	Username string `json:"username"`
 	IsBot bool `json:"isbot"`
 }
