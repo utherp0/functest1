@@ -44,10 +44,14 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 		return nil, errors.New("TELEGRAM_API_KEY environment variable not set")
 	}
 
+  fmt.Println("At 1")
+
 	if err = event.Validate(); err != nil {
 		fmt.Fprintf(os.Stderr, "invalid event received. %v", err)
 		return
 	}
+
+  fmt.Println("At 2")
 
 	msg := &Message{}
 	event.DataAs(msg)
@@ -55,6 +59,8 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 		fmt.Fprintf(os.Stderr, "failed to parse Telegram message %s\n", err)
 		return
 	}
+
+  fmt.Println("At 3")
 
 	// Extract the data from the Telegram message response
 	var chatID string
@@ -64,6 +70,8 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 		fmt.Fprintf(os.Stderr, "No Chat ID in received message.\n")
 		return
 	}
+
+  fmt.Println("At 4")
 
 	// Message Text
 	var msgText string
@@ -79,6 +87,8 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 
 	//msgDate = msg.Date
 
+  fmt.Println("At 5")
+
 	// Username
 	var msgUsername string
 	if inputUsername, found := msg.From["username"]; found {
@@ -88,6 +98,8 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 		return
 	}
 
+  fmt.Println("At 6")
+
 	// IsBot
 	var msgIsbot bool
 	if inputIsbot, found := msg.From["is_bot"]; found {
@@ -96,6 +108,8 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 		fmt.Fprintf(os.Stderr, "No is_bot label in received message.\n")
 		return
 	}
+
+  fmt.Println("At 7")
 
 	fmt.Println( "  Collated data.\n")
 	fmt.Printf( "  ChatID: %s\n",chatID)
