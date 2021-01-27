@@ -101,7 +101,7 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 	response.SetData(cloudevents.ApplicationJSON, Response{
 		Chat: chatID,
 		Text: msgText,
-		Date: msgDate,
+//		Date: msgDate,
 		Username: msgUsername,
 		IsBot: msgIsbot,
 	})
