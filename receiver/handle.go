@@ -12,7 +12,6 @@ import (
 var (
 	token                = os.Getenv("TELEGRAM_API_KEY")
 	getFileInfoUrl       = "https://api.telegram.org/bot" + token + "/getFile"
-	donwloadPhotoBaseUrl = "https://api.telegram.org/file/bot" + token + "/"
 )
 
 type Message struct {
