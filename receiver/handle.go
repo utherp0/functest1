@@ -76,10 +76,6 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 	var msgDate int8
 
 	msgDate = msg.Date
-	if msgDate == "" {
-		fmt.Fprintf(os.Stderr, "No date in received message.\n")
-		return
-	}
 
 	// Username
 	var msgUsername string
