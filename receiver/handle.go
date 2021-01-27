@@ -112,7 +112,7 @@ func Handle(ctx context.Context, event cloudevents.Event) (resp *cloudevents.Eve
 		Text: msgText,
 		Date: msgDate,
 		Username: msgUsername,
-		IsBot: msgIsbot
+		IsBot: msgIsbot,
 	})
 	
   resp = &response
