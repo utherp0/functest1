@@ -1,0 +1,11 @@
+name: responder
+namespace: ""
+runtime: node
+image: ""
+imageDigest: ""
+trigger: events
+builder: default
+builderMap:
+  default: quay.io/boson/faas-nodejs-builder
+envVars:
+  TELEGRAM_API_KEY: 1558547650:AAHUZY0Row0xiF5aDn1s8L6Fwf7WJ3jAMPQ

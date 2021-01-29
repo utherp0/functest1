@@ -38,15 +38,20 @@ public class Function {
     String apiKey;
 
     @Funq
-    @CloudEventMapping(responseType = "telegram.image.processed")
-    public Uni<Output[]> function(Input input, @Context CloudEvent cloudEvent) {
+    @CloudEventMapping(responseType = "telegram.message.respond")
+    public Uni<MessageOutput[]> function(Input input, @Context CloudEvent cloudEvent) {
         return Uni.createFrom().emitter(emitter -> {
             getData(input, cloudEvent, emitter, 100);
         });
-
     }
 
-    private void getData(Input input, CloudEvent cloudEvent, UniEmitter<? super Output[]> emitter, int retries) {
+    private void getData( Input input, CloudEvent cloudEvent, UniEmitter<? super MessageOutput[]> emitter, int retries )
+    {
+      
+    }
+
+    /**
+     * private void getData(Input input, CloudEvent cloudEvent, UniEmitter<? super Output[]> emitter, int retries) {
         if (retries <= 0) {
             emitter.fail(new RuntimeException("Too many fails to call face api."));
         }
@@ -77,5 +82,5 @@ public class Function {
                         emitter.fail(throwable);
                     }
                 });
-    }
+    */
 }
