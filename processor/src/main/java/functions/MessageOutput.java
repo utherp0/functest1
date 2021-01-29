@@ -28,11 +28,6 @@ public class MessageOutput
     this.isbot = isbotInput;
   }
 
-  public void setDate( String dateInput )
-  {
-    this.date = dateInput;
-  }
-
   // Accessors
   public String getText() { return this.text; }
   public String getUsername() { return this.username; }

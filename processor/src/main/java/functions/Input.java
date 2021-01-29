@@ -5,7 +5,7 @@ public class Input
   private String _chat = null;
   private String _text = null;
   private String _username = null;
-  private boolean _isBot = null;
+  private boolean _isBot = false;
 
   public Input() {}
 
