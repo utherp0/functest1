@@ -26,7 +26,7 @@ public class MessageOutput
 
   public void setIsbot( boolean isbotInput )
   {
-    this.isbot = isBotInput;
+    this.isbot = isbotInput;
   }
 
   public void setDate( String dateInput )
