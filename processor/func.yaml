@@ -1,7 +1,7 @@
 name: processor
 namespace: ""
 runtime: quarkus
-image: ""
+image: quay.io/ilawson/func1processor
 imageDigest: ""
 trigger: events
 builder: quay.io/boson/faas-quarkus-jvm-builder

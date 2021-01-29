@@ -1,7 +1,7 @@
 name: responder
 namespace: ""
 runtime: node
-image: ""
+image: quay.io/ilawson/func1responder
 imageDigest: ""
 trigger: events
 builder: default
