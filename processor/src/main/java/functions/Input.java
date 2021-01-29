@@ -1,28 +1,31 @@
 package functions;
 
-public class Input {
-    private String url;
-    private String chat;
+public class Input 
+{
+  private String _chat = null;
+  private String _text = null;
+  private String _username = null;
+  private boolean _isBot = null;
 
-    public Input() {}
+  public Input() {}
 
-    public Input(String url, String chat) {
-        this.url = url;
-    }
+  public Input( String chat, String text, String username, boolean isBot ) 
+  {
+    _chat = chat;
+    _text = text;
+    _username = username;
+    _isBot = isBot;
+  }
 
-    public String getUrl() {
-        return this.url;
-    }
+  // Accessors
+  public String getChat() { return _chat;}
+  public String getText() { return _text; }
+  public String getUsername() { return _username; }
+  public boolean getIsBot() { return _isBot; }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getChat() {
-        return this.chat;
-    }
-
-    public void setChat(String chat) {
-        this.chat = chat;
-    }
+  // Mutators
+  public void setChat( String chat ) { _chat = chat; }
+  public void setText( String text ) { _text = text; }
+  public void setUsername( String username ) { _username = username; }
+  public void setIsBot( boolean isBot ) { _isBot = isBot; }
 }

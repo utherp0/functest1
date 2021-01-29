@@ -3,7 +3,6 @@ package functions;
 public class MessageOutput
 {
   private String text = null;
-  private String date = null;
   private String username = null;
   private String chatid = null;
   private boolean isbot = false;
@@ -39,5 +38,4 @@ public class MessageOutput
   public String getUsername() { return this.username; }
   public String getChatid() { return this.chatid; }
   public boolean getIsbot() { return this.isbot; }
-  public String getDate() { return this.date; }
 }

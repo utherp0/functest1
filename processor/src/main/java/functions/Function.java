@@ -26,14 +26,6 @@ public class Function {
     @Inject
     Vertx vertx;
 
-    private static final List<FaceAttributeType> attributes;
-    static {
-        List<FaceAttributeType> attrs = new ArrayList<>(2);
-        attrs.add(FaceAttributeType.AGE);
-        attrs.add(FaceAttributeType.EMOTION);
-        attributes = Collections.unmodifiableList(attrs);
-    }
-
     @ConfigProperty(name = "OCP_APIM_SUBSCRIPTION_KEY")
     String apiKey;
 
@@ -47,7 +39,12 @@ public class Function {
 
     private void getData( Input input, CloudEvent cloudEvent, UniEmitter<? super MessageOutput[]> emitter, int retries )
     {
-      
+      System.out.println( "In the GetData method...");
+      System.out.println( " Received:");
+      System.out.println( "    chatid: " + input.getChat());
+      System.out.println( "    text: " + input.getText());
+      System.out.println( "    username: " + input.getUsername());
+      System.out.println( "    isBot: " + input.getIsBot());
     }
 
     /**
