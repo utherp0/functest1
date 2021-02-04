@@ -5,7 +5,7 @@ public class MessageOutput
   private int _responseCode = 0;
   private String _name = null;
   private String _details = null;
-  private long _elapsed = ;
+  private long _elapsed = 0;
 
   // Setters
   public void setResponseCode( int value )
@@ -29,7 +29,7 @@ public class MessageOutput
   }
   
   // Accessors
-  public int getResponseCode() { return this._responeCode; }
+  public int getResponseCode() { return this._responseCode; }
   public String getName() { return this._name; }
   public String getDetails() { return this._details; }
   public long getElapsed() { return this._elapsed; }
