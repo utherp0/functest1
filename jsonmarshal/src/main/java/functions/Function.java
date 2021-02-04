@@ -27,7 +27,7 @@ public class Function
     @Funq
     @CloudEventMapping(responseType = "message.processedbyquarkus")
     //public Uni<MessageOutput> function( Input input, @Context CloudEvent cloudEvent)
-    public Uni<MessageOutput> function( String input, @Context CloudEvent cloudEvent)
+    public Uni<MessageOutput> function( Map<String, List<String>> input, @Context CloudEvent cloudEvent)
     {
       System.out.println( "Recv: " + input );
 
