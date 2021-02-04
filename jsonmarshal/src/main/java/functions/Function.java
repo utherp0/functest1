@@ -54,17 +54,4 @@ public class Function
 
       emitter.complete(output);
     }
-
-    /** 
-    public void buildResponse( Input input, CloudEvent cloudEvent, UniEmitter<? super MessageOutput> emitter )
-    {
-        System.out.println( "In the BuildResponse method...");
-        System.out.println( " Received:");
-        System.out.println( "    chatid: " + input.getChat());
-        System.out.println( "    text: " + input.getText());
-        System.out.println( "    username: " + input.getUsername());
-        System.out.println( "    isBot: " + input.getIsBot());
-        
-    } 
-    */
 }
