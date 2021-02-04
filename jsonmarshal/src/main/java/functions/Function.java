@@ -40,7 +40,10 @@ public class Function
  
     public void buildResponse( Map<String, List<String>> input, CloudEvent cloudEvent, UniEmitter<? super MessageOutput> emitter )
     {
-
+      for( String key : input.keySet())
+      {
+        System.out.println( key + ":" input.get(key));
+      }
     }
 
     /** 
