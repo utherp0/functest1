@@ -42,7 +42,7 @@ public class Function
     {
       for( String key : input.keySet())
       {
-        System.out.println( key + ":" input.get(key));
+        System.out.println( key + ":" + input.get(key));
       }
     }
 

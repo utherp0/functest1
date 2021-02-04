@@ -26,17 +26,15 @@ async function sendReply(context, data) {
     // resolve immediately with HTTP 204 No Content
     resolve({ code: 204 });
 
+    console.log( data );
+
     let chatId;
     const eventType = context.cloudevent.type;
 
     let response;
-    if (eventType === 'telegram.image.processed') {
+    if (eventType === 'telegram.message.respond') {
       response = formatResponse(data);
       chatId = data[0].chat;
-    } else if (eventType === 'telegram.text') {
-      response = `👋 😃
-Send me an image with faces in it and I will analyze it for you.`;
-      chatId = data.chat;
     } else {
       // Don't know how to handle any other kind of event
       context.log.error(`Cannot handle events of type: ${eventType}`);
