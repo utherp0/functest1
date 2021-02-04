@@ -38,7 +38,7 @@ public class Function
       });    
     }
  
-    public void buildResponse( String input, CloudEvent cloudEvent, UniEmitter<? super MessageOutput> emitter )
+    public void buildResponse( Map<String, List<String>> input, CloudEvent cloudEvent, UniEmitter<? super MessageOutput> emitter )
     {
 
     }
