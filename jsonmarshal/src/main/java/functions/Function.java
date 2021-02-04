@@ -49,7 +49,7 @@ public class Function
 
       output.setElapsed(System.currentTimeMillis() - start );
       output.setName("Payload Check");
-      output.setDetails("Length is " + json.length());
+      output.setDetails("Length is " + json.size());
       output.setResponseCode(200);
 
       emitter.complete(output);
