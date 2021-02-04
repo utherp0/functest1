@@ -40,7 +40,7 @@ public class Function
  
     public void buildResponse( Map<String, List<String>> input, CloudEvent cloudEvent, UniEmitter<? super MessageOutput> emitter )
     {
-      String json = input.get("payload");
+      List<String> json = input.get("payload");
 
       System.out.println( json );
 
