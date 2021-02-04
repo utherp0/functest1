@@ -33,13 +33,13 @@ public class Function
 
       return Uni.createFrom().emitter(emitter -> 
       {
-        buildResponse(input, cloudEvent, emtter);
+        buildResponse(input, cloudEvent, emitter);
       });    
     }
  
     public void buildResponse( String input, CloudEvent cloudEvent, UniEmitter<? super MessageOutput> emitter )
     {
-        
+
     }
 
     /** 
