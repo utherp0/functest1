@@ -19,6 +19,8 @@ import java.util.Map;
 
 public class Function 
 {
+    private long start = System.currentTimeMillis();
+
     @Inject
     Vertx vertx;
 
@@ -30,8 +32,6 @@ public class Function
     //public Uni<MessageOutput> function( Input input, @Context CloudEvent cloudEvent)
     public Uni<MessageOutput> function( Map<String, List<String>> input, @Context CloudEvent cloudEvent)
     {
-      System.out.println( "Recv: " + input );
-
       return Uni.createFrom().emitter(emitter -> 
       {
         buildResponse(input, cloudEvent, emitter);
@@ -40,10 +40,19 @@ public class Function
  
     public void buildResponse( Map<String, List<String>> input, CloudEvent cloudEvent, UniEmitter<? super MessageOutput> emitter )
     {
-      for( String key : input.keySet())
-      {
-        System.out.println( key + ":" + input.get(key));
-      }
+      String json = input.get("payload");
+
+      System.out.println( json );
+
+      // Build a return packet
+      MessageOutput output = new MessageOutput();
+
+      output.setElapsed(System.currentTimeMillis() - start );
+      output.setName("Payload Check");
+      output.setDetails("Length is " + json.length());
+      output.setResponseCode(200);
+
+      emitter.complete(output);
     }
 
     /** 

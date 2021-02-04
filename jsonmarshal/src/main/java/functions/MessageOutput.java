@@ -2,35 +2,35 @@ package functions;
 
 public class MessageOutput
 {
-  private String text = null;
-  private String username = null;
-  private String chatid = null;
-  private boolean isbot = false;
+  private int _responseCode = 0;
+  private String _name = null;
+  private String _details = null;
+  private long _elapsed = ;
 
   // Setters
-  public void setText( String textInput )
+  public void setResponseCode( int value )
   {
-    this.text = textInput;
+    _responseCode = value;
   }
 
-  public void setUsername( String usernameInput )
+  public void setName( String name )
   {
-    this.username = usernameInput;
+    _name = name;
   }
 
-  public void setChatid( String chatidInput )
+  public void setDetails( String details )
   {
-    this.chatid = chatidInput;
+    _details = details;
   }
 
-  public void setIsbot( boolean isbotInput )
+  public void setElapsed( long value )
   {
-    this.isbot = isbotInput;
+    _elapsed = value;
   }
-
+  
   // Accessors
-  public String getText() { return this.text; }
-  public String getUsername() { return this.username; }
-  public String getChatid() { return this.chatid; }
-  public boolean getIsbot() { return this.isbot; }
+  public int getResponseCode() { return this._responeCode; }
+  public String getName() { return this._name; }
+  public String getDetails() { return this._details; }
+  public long getElapsed() { return this._elapsed; }
 }
