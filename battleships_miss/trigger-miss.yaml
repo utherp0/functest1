@@ -2,7 +2,7 @@
 apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
-  name: trigger-processor
+  name: trigger-miss
 spec:
   broker: default
   filter:
@@ -12,5 +12,5 @@ spec:
     ref:
      apiVersion: serving.knative.dev/v1
      kind: Service
-     name: battleships_miss
+     name: battleships--miss
 
