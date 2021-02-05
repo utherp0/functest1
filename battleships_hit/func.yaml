@@ -1,4 +1,4 @@
-name: battleships_hit
+name: battleships-hit
 namespace: ""
 runtime: quarkus
 image: quay.io/ilawson/battleships_hit

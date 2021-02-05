@@ -1,4 +1,4 @@
-name: battleships_miss
+name: battleships-miss
 namespace: ""
 runtime: quarkus
 image: quay.io/ilawson/battleships_miss
