@@ -46,6 +46,8 @@ public class Function
       {
         System.out.println("  Key (" + key + ") : " + input.get( key ));
       }
+
+      String json = input.get("payload");
       
       //System.out.println( json );
 
@@ -54,7 +56,7 @@ public class Function
 
       output.setElapsed(System.currentTimeMillis() - start );
       output.setName("Payload Check");
-      //output.setDetails("Length is " + json.size());
+      output.setDetails(json);
       output.setResponseCode(200);
 
       emitter.complete(output);
