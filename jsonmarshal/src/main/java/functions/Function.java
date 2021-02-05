@@ -41,8 +41,12 @@ public class Function
     public void buildResponse( Map<String, String> input, CloudEvent cloudEvent, UniEmitter<? super MessageOutput> emitter )
     {
       System.out.println( "Size of input: " + input.size());
-      //Stringjson = input;
 
+      for( String key : input.keySet())
+      {
+        System.out.println("  Key (" + key + ") : " + input.get( key ));
+      }
+      
       //System.out.println( json );
 
       // Build a return packet
